@@ -1,14 +1,28 @@
 
-<form>
+<form (ngSubmit)="saveDataForm()" autocomplete="off" [formGroup]="myForm">
 
     <!-- First Name and Last Name -->
     <div class="row mb-3">
         <div class="col">
-            <input type="text" class="form-control" placeholder="First Name">
+            <input type="text" 
+                   class="form-control" 
+                   formControlName="firstName"
+                   placeholder="First Name">
+            <span class="form-text text-danger"
+                  *ngIf="validField('firstName')">
+                The field must be 5 letters
+            </span>
         </div>
         <div class="col">
             <div class="col">
-                <input type="text" class="form-control" placeholder="Last Name">
+                <input type="text" 
+                       class="form-control"
+                       formControlName="lastName" 
+                       placeholder="Last Name">
+                <span class="form-text text-danger"
+                      *ngIf="validField('lastName')">
+                    The field must be 5 letters
+                </span>
             </div>
         </div>
     </div>
@@ -16,40 +30,75 @@
     <!-- Company -->
     <div class="row mb-3">
         <div class="col">
-            <input type="text" class="form-control" placeholder="Company">
+            <input type="text" 
+                   class="form-control"
+                   formControlName="company" 
+                   placeholder="Company">
+            <span class="form-text text-danger"
+                  *ngIf="validField('company')">
+                The field must be 3 letters
+            </span>
         </div>
     </div>
 
     <!-- Address -->
     <div class="row mb-3">
         <div class="col">
-            <input type="text" class="form-control" placeholder="Address">
+            <input type="text" 
+                   class="form-control"
+                   formControlName="address" 
+                   placeholder="Address">
+            <span class="form-text text-danger"
+                   *ngIf="validField('address')">
+                 The field must be 6 letters
+            </span>
         </div>
     </div>
 
     <!-- Email and Phone -->
     <div class="row mb-3">
         <div class="col">
-            <input type="email" class="form-control" placeholder="Email">
+            <input type="email" 
+                   class="form-control"
+                   formControlName="email" 
+                   placeholder="Email">
+            <span class="form-text text-danger"
+                   *ngIf="validField('email')">
+                 {{ emailError }}
+            </span>
         </div>
         <div class="col">
-            <input type="number" class="form-control" placeholder="Phone">
+            <input type="number" 
+                   class="form-control"
+                   formControlName="phone" 
+                   placeholder="Phone">
+            <span class="form-text text-danger"
+                   *ngIf="validField('phone')">
+                 The field must be 9 numbers
+            </span>
         </div>
     </div>
 
     <!-- Additional Information -->
     <div class="row mb-3">
         <div class="col">
-            <textarea class="form-control" rows="4" placeholder="Additional information"></textarea>
+            <textarea class="form-control" 
+                      rows="4"
+                      formControlName="addInformation" 
+                      placeholder="Additional information"></textarea>
         </div>
     </div>
 
     <!-- Button Submit -->    
     <div class="d-grid">
-        <button type="button" class="btn btn-primary"> Submit </button>
+        <button type="submit" class="btn btn-primary"> Submit </button>
     </div>
     
   
     
 
 </form>
+
+
+
+
