@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormContactService } from '../../services/form-contact.service';
 
 @Component({
   selector: 'app-first-form',
@@ -9,6 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class FirstFormComponent implements OnInit {
 
+  public userName: string = '';
   public emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
 
   myForm: FormGroup = this.fb.group({
@@ -33,9 +35,11 @@ export class FirstFormComponent implements OnInit {
     return '';
   }
 
-  constructor( private fb: FormBuilder ) { }
+  constructor( private fb: FormBuilder,
+               private formContactService: FormContactService  ) { }
 
   ngOnInit(): void {
+    this.userName = this.formContactService.userName;
   }
 
   validField( field: string ): any{
