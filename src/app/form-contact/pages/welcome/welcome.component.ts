@@ -10,17 +10,20 @@ import { FormContactService } from '../../services/form-contact.service';
 export class WelcomeComponent implements OnInit {
 
   @ViewChild('inputName') inputName: ElementRef<HTMLInputElement>
+  public errorName: boolean = false;
 
   constructor( private router: Router,
                private formContactService: FormContactService ) { }
 
   ngOnInit(): void {
+    localStorage.removeItem('userName');
   }
 
   singIn() {
     const userName = this.inputName.nativeElement.value;
 
-    if( userName.trim().length === 0 ){
+    if( userName.trim().length === 0 || userName.trim().length <= 4){
+      this.errorName = true;
       return;
     }
 

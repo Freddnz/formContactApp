@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormContactService } from '../../services/form-contact.service';
+
 
 @Component({
   selector: 'app-first-form',
@@ -39,7 +40,7 @@ export class FirstFormComponent implements OnInit {
                private formContactService: FormContactService  ) { }
 
   ngOnInit(): void {
-    this.userName = this.formContactService.userName;
+    this.userName = JSON.parse(localStorage.getItem('userName'));
   }
 
   validField( field: string ): any{

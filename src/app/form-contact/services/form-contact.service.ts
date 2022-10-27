@@ -1,16 +1,23 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormContactService {
 
-  public userName: string;
-
   constructor() { }
 
+  verifyName(): Observable<boolean>{
+    if(!localStorage.getItem('userName')){
+      return of(false)
+    }else {
+      return of(true);
+    }
+  }
+
   saveUserName( userName: string ): any{
-    this.userName = userName;
+    localStorage.setItem('userName', JSON.stringify( userName ));
   }
 
 }
